@@ -1,0 +1,21 @@
+data COp a = CVal Int a
+    deriving (Show)
+--is this an appropriate definition of a functor for COp?
+instance Functor COp where
+  fmap f (CVal c v)
+      = CVal (c+1) (f v)
+
+example :: COp Int
+example = CVal 0 42
+
+transformed1 :: COp Int
+transformed1 = fmap (+1) example  -- Increment value by 1
+
+transformed2 :: COp Int
+transformed2 = fmap (id) transformed1  -- Multiply value by 2
+
+main :: IO ()
+main = do
+    print example       -- Output: CVal 0 42
+    print transformed1  -- Output: CVal 1 43
+    print transformed2  -- Output: CVal 2 86

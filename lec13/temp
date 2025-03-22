@@ -1,0 +1,14 @@
+instance (Num a,Num b)=> IfValue (a,b) where
+    boolVal (0, 0) = False
+    boolVal _ = True
+
+
+mapPairs _ () = ()
+mapPairs f a = mapfst f (mapsnd f a)
+
+mapfst :: (t -> a) -> () -> ()
+mapfst _ () = ()
+mapfst f (x,_) = (f x,_)
+mapsnd :: (t -> b) -> () -> ()
+mapsnd _ () = ()
+mapsnd f (_,y) = (_,f y)

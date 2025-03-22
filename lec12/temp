@@ -1,0 +1,32 @@
+
+data Tree a =
+      Empty
+    | Node (Tree a) a (Tree a)
+  deriving (Show,Eq)
+
+insert :: Ord a => Tree a -> a -> Tree a
+insert Empty x = Node Empty x Empty
+insert (Node l v r) x
+  | x < v     = Node (insert l x) v r
+  | otherwise = Node l v (insert r x)
+
+tree :: Tree Integer
+tree = foldl insert Empty [10, 5, 15, 3, 7, 12, 18]
+t :: Tree Integer
+t =  foldl insert Empty [10, 5, 15, 3, 7, 12, 18]
+
+preorder :: Tree a -> [a]
+preorder Empty         = []
+preorder (Node l x r)  =
+    [x] ++ preorder l ++ preorder r
+
+equalTree (Empty) (Empty) = false
+equalTree (Node l x r) (Node a b c) = 
+
+
+equalList 
+
+
+cl :: Eq a => [a] -> [a] -> Bool
+cl [] [] = True
+cl (x:xs) (y:ys) = (if(x == y) then True else False ) && cl (xs) (ys)
